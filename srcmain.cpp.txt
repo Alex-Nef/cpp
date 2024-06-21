@@ -1,0 +1,22 @@
+#include <iostream>
+#include "db.h"
+
+int main() {
+    Database db("Driver={SQL Server};Server=your_server;Database=TestDB;Trusted_Connection=yes;");
+    if (!db.connect()) {
+        std::cerr << "Ошибка соединения с базой данных" << std::endl;
+        return 1;
+    }
+
+    std::string query = "SELECT * FROM Users";
+    db.executeQuery(query);
+
+    while (db.next()) {
+        std::cout << db.getInt("ID") << ", "
+                  << db.getString("Name") << ", "
+                  << db.getString("Email") << std::endl;
+    }
+
+    db.disconnect();
+    return 0;
+}

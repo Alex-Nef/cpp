@@ -1,0 +1,26 @@
+#ifndef DB_H
+#define DB_H
+
+#include <iostream>
+#include <sql.h>
+#include <sqlext.h>
+#include <string>
+
+class Database {
+public:
+    Database(const std::string& connectionString);
+    bool connect();
+    void disconnect();
+    bool executeQuery(const std::string& query);
+    bool next();
+    int getInt(const std::string& columnName);
+    std::string getString(const std::string& columnName);
+
+private:
+    std::string connectionString_;
+    SQLHENV hEnv_;
+    SQLHDBC hDbc_;
+    SQLHSTMT hStmt_;
+};
+
+#endif // DB_H

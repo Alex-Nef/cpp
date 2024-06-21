@@ -1,0 +1,12 @@
+CREATE DATABASE TestDB;
+
+USE TestDB;
+
+CREATE TABLE Users (
+    ID INT PRIMARY KEY,
+    Name NVARCHAR(100),
+    Email NVARCHAR(100)
+);
+
+INSERT INTO Users (ID, Name, Email) VALUES (1, 'John Doe', 'john@example.com');
+INSERT INTO Users (ID, Name, Email) VALUES (2, 'Jane Smith', 'jane@example.com');
